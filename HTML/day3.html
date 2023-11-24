@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+</head>
+<body>
+    <header style="background-color: bisque;">
+        <h1>Personal detail form</h1>
+    </header>
+    <form action="">
+     <div>
+        <label for="Fname">First Name</label>
+        <input type="text" name="name" id="Fname" placeholder="First name" required>
+    </div>
+    <br>
+    <div>
+        <label for="Sname">Last Name</label>
+        <input type="text" name="name" id="Lname" placeholder="Last name" required>
+    </div>
+    <br>
+    <div>
+        <label for="Pword">Password:</label>
+        <input type="Password" name="Pword" id="Pword" maxlength="13" placeholder="Password" required>
+    </div>
+    <br>
+    <div>
+        <label for="Email">Email address:</label>
+        <input type="email" name="Email" id="Email" placeholder="Email" required>
+    </div>
+    <br>
+    <div>
+        <label for="Pnum">Phone number</label>
+        <input type="tel" name="Pnum" id="Pnum" placeholder="(+44) (0) 12345678910" required>
+    </div>
+    <br>
+    <div>
+        <label for="DOB">Date of birth</label>
+        <input type="date" name="DOB" id="DOB" required>
+    </div>
+    <br>
+    <div>
+        <label for="duration">Time in United Kingdom</label>
+        <input type="number" name="duration" id="duration" min="0" max="99" value="0" required>
+    </div>
+    <br>
+    <div>
+        <label for="Country">Country:</label>
+       
+        <label for="Engalnd">England</label>
+        <input type="radio" name="Country" value="England">
+
+        <label for="Scotland">Scotland</label>
+        <input type="radio" name="Country" value="Scotland">
+
+        <label for="Wales">Wales</label>
+        <input type="radio" name="Country" value="Wales">
+
+        <label for="Northern Ireland">Northern Ireland</label>
+        <input type="radio" name="Country" value="Northern Ireland">
+    </div>
+    <br>
+    <div>
+        <label for="Payform">Payment form:</label>
+        <select name="Payform" id="Payform">
+            <option value="Credit">Credit</option>
+            <option value="Debit">Debit</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <label for="18+">18+</label>
+        <input type="checkbox" id="age" name="age" required>
+
+    </div>
+    <br>
+    <div>
+        <label for="happy">How happy are you in the UK?</label>
+        <input type="range" name="happy" >
+    </div>
+    <br>
+    <div>
+        <label for="CV">CV:</label>
+        <input type="file" name="CV" id="CV" required>
+    </div>
+    <br>
+    <div>
+        <input type="submit">
+    </div>
+    <br>
+    <div>
+        <input type="reset">
+    </div>
+    </form> <BR></BR>
+    <form action="">
+        <fieldset>
+            <legend style="background-color: aqua;">Software evaluation</legend>
+            <div>
+                <label for="Name">Fullname:</label>
+                <input type="text" name="Name" placeholder="Enter your Name" required>
+            </div> <br>
+            <div>
+                <label for="EmpID">Employee ID:</label>
+                <input type="text" name="EmpID" max="15" required placeholder="Enter ID">
+            </div> <br>
+            <div>
+                <label for="Email">Email address:</label>
+                <input type="email" name="Email" id="Email" placeholder="Email" required>
+            </div> <br>
+            <div>
+                <label for="Pnum">Phone number</label>
+                <input type="tel" name="Pnum" id="Pnum" placeholder="(+44) (0) 12345678910" required>
+            </div> <br>
+            <div>
+                <label for="Duration">How long have you been using this software?:</label> <br>
+               
+                <label for="-1">Less than a year</label>
+                <input type="radio" name="-1" value="Less than a year">
+        
+                <label for="+1">More than a year </label>
+                <input type="radio" name="+1" value="More than a year">
+        
+            </div> <br>
+            <div>
+                <label for="Rating">Rate your experince</label>
+                <input type="range" name="Rating" required>
+            </div> <br>
+            <div>
+                <label for="Duration">Would you be willing to try out an alternative to this software?:</label> <br>
+               
+                <label for="yh">Yes</label>
+                <input type="radio" name="yh" value="yes">
+        
+                <label for="no">No</label>
+                <input type="radio" name="no" value="no">
+        
+            </div> <br>
+            <div>
+                <input type="submit">
+            </div>
+            <div>
+                <input type="reset" value="clear all">
+            </div>
+
+
+
+
+
+
+        </fieldset>
+    </form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="51.497" height="11.494" viewBox="0 0 51.497 11.494">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_406" data-name="Rectangle 406" width="51.497" height="11.494" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_489" data-name="Group 489" transform="translate(0 0)">
+    <g id="Group_488" data-name="Group 488" transform="translate(0 0)" clip-path="url(#clip-path)">
+      <path id="Path_135" data-name="Path 135" d="M19.619,0H17.083a6.474,6.474,0,0,1-2.62,5.229l-1,.751,3.884,5.3h3.2L16.967,6.4A8.969,8.969,0,0,0,19.619,0" transform="translate(-10.555 0)"/>
+      <rect id="Rectangle_404" data-name="Rectangle 404" width="2.596" height="11.282"/>
+      <rect id="Rectangle_405" data-name="Rectangle 405" width="2.445" height="11.276" transform="translate(10.745 0.002)"/>
+      <path id="Path_136" data-name="Path 136" d="M143.3,15.134a2.849,2.849,0,0,0-2.4,1.079v-.87H138.57v7.8h2.354v-4.1a1.644,1.644,0,0,1,1.752-1.767c1.027,0,1.616.613,1.616,1.75v4.118h2.333V18.179A3.088,3.088,0,0,0,143.3,15.13Z" transform="translate(-108.666 -11.865)"/>
+      <path id="Path_137" data-name="Path 137" d="M69.851,21.241a2.063,2.063,0,0,1-2.115-2.007,2.119,2.119,0,0,1,4.232,0,2.063,2.063,0,0,1-2.117,2.007m2.124-5.907v.5a4.11,4.11,0,1,0,0,6.813v.5h2.337v-7.81Z" transform="translate(-51.397 -11.856)"/>
+      <path id="Path_138" data-name="Path 138" d="M114.231,17.136V16.12H111.84v7.8h2.4V20.279c0-1.23,1.331-1.89,2.257-1.89h.026V16.12a2.908,2.908,0,0,0-2.288,1.016" transform="translate(-87.705 -12.641)"/>
+      <path id="Path_139" data-name="Path 139" d="M184.028,21.241a2.063,2.063,0,0,1-2.115-2.007,2.119,2.119,0,0,1,4.232,0,2.063,2.063,0,0,1-2.117,2.007m2.126-5.907v.5a4.115,4.115,0,1,0,0,6.8v.5h2.335v-7.8Z" transform="translate(-140.937 -11.856)"/>
+      <path id="Path_140" data-name="Path 140" d="M226.5,39.44a1.467,1.467,0,1,0,1.465,1.47v0A1.465,1.465,0,0,0,226.5,39.44h0" transform="translate(-176.468 -30.929)"/>
+    </g>
+  </g>
+</svg>

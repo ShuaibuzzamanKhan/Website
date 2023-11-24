@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <article>
+        <h3>Oranges</h3>
+        <p>they are orange</p>
+    </article>
+    <article>
+        <h4>Bananas</h4>
+        <p>they are yellow</p>
+    </article>
+    <article>
+        <h4>Shops</h4>
+        <p>ASDA, Tesco, Lidl</p>
+    </article>
+    <form action="">
+
+        <fieldset>
+            <legend>Job details</legend>
+            <div>
+                <label for="Job">Job tittle:</label>
+                <input type="text" name="Job" placeholder="Enter your Job tittle" required>
+            </div> <br>
+            <div>
+                <label for="Des">Description:</label>
+                <textarea name="Description" id="des" cols="30" rows="10" maxlength="500" 
+                placeholder="Write a brief description about your job with up to 500 words"></textarea>
+            </div> <br>
+            <div>
+                <label for="Cname">Company name:</label>
+                <input type="text" name="Cname" id="Cname" placeholder="optional">
+            </div> <br>
+            <div>
+                <label for="Pnum">Contact number</label>
+                <input type="tel" name="Pnum" id="Pnum" placeholder="(+44) (0) 12345678910" required>
+            </div> <br>
+            <div>
+                <label for="CPerson">Contact person</label>
+                <input type="text" name="Cperson" id="CPerson" maxlength="30">
+            </div> <br>
+            <div>
+                <label for="Email">Email address:</label>
+                <input type="email" name="Email" id="Email" placeholder="Email" required>
+            </div> <br>
+
+            <div>
+                <label for="Duration">Work status:</label> 
+               
+                <label for="Ftime">Full time</label>
+                <input type="radio" name="Job" value="Full time">
+        
+                <label for="Ptime">Part time </label>
+                <input type="radio" name="Job" value="Part time">
+
+                <label for="PerDim">Per Dim</label>
+                <input type="radio" name="Job" value="Per Dim">
+
+                <label for="Other">Other</label>
+                <input type="radio" name="Job" value="Other">
+            </div> <br>
+            <div>
+                <label for="Salary">Salary</label>
+                <input type="text" name="Salary" required>
+
+                <select name="currency" id="currency">
+                    <option value="GPD">GPD</option>
+                    <option value="USD">USD</option>
+                    <option value="YEN">YEN</option>
+                    <option value="Euros">EUR</option>
+                </select>
+                <select name="Ptype" id="Ptype">
+                    <option value="Yearly">Annually</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Hourly">Hourly</option>
+                </select>
+            </div> <br>
+            <div>
+                <label for="Experince">Experince(years)</label>
+                <input type="number" min="0" max="50" value="0">
+            </div> <br>
+            <div>
+                <label for="Location">Location</label>
+                <input type="text" name="Location">
+            </div> <br>
+            <div>
+                <label for="Qual">Qualification</label>
+                <select name="Qualification" id="Qualification">
+                    <option value="Highschool">Highschool</option>
+                    <option value="Undergraduate">Undergraduate</option>
+                    <option value="Post Graduate">Post graduate</option>
+                </select>
+                <input type="button" value="ADD>>">
+                <input type="button" value="<<Remove">
+            </div>
+            <div>
+                <input type="submit">
+                <input type="reset">
+            </div>
+
+
+
+
+
+
+        </fieldset>
+    </form> <br>
+
+    <form action="">
+        <fieldset>
+            <h2>Registration form</h2> <br>
+            <div>
+            <label for="Fname">First name:</label>
+            <input type="text" placeholder="Required" required>
+        </div> <br>
+        <div>
+            <label for="Mname">Middle name</label>
+            <input type="text" placeholder="Optional">
+
+        </div> <br>
+        <div>
+            <label for="Lname">Last Name:</label>
+            <input type="text" placeholder="Required" required>
+        </div> <br>
+        <div>
+            <label for="Fullnane">Full Name:</label>
+            <input type="text">
+        </div> <br>
+        <div>
+            <label for="DOB">Date of birth</label>
+            <select name="day" id="day">
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option>
+                <option value="1">6</option>
+                <option value="1">7</option>
+                <option value="1">8</option>
+                <option value="1">9</option>
+                <option value="1">10</option>
+                <option value="1">11</option>
+                <option value="1">12</option>
+                <option value="1">13</option>
+                <option value="1">14</option>
+                <option value="1">15</option>
+                <option value="1">16</option>
+                <option value="1">17</option>
+                <option value="1">18</option>
+                <option value="1">19</option>
+                <option value="1">20</option>
+                <option value="1">21</option>
+                <option value="1">22</option>
+                <option value="1">23</option>
+                <option value="1">24</option>
+                <option value="1">25</option>
+                <option value="1">26</option>
+                <option value="1">27</option>
+                <option value="1">28</option>
+                <option value="1">29</option>
+                <option value="1">30</option>
+                <option value="1">31</option>
+            </select>
+            <select name="Month" id="Month">
+                <option value="1">1</option>
+                <option value="2">1</option>
+                <option value="3">1</option>
+                <option value="4">1</option>
+                <option value="5">1</option>
+                <option value="6">1</option>
+                <option value="7">1</option>
+                <option value="8">1</option>
+                <option value="9">1</option>
+                <option value="10">1</option>
+                <option value="11">1</option>
+                <option value="12">1</option>               
+            </select>
+            <select name="year" id="year">
+                <option value="1">2005</option>
+                <option value="1">2004</option>
+                <option value="1">2003</option>
+                <option value="1">2002</option>
+                <option value="1">2001</option>
+                <option value="1">2000</option>
+                <option value="1">1999</option>
+                <option value="1">1998</option>
+                <option value="1">1997</option>
+                <option value="1">1996</option>
+                <option value="1">1995</option>
+                <option value="1">1994</option>
+                <option value="1">1993</option>
+                <option value="1">1992</option>
+                <option value="1">1991</option>
+                <option value="1">1990</option>
+                <option value="1">1989</option>
+                <option value="1">1988</option>
+                <option value="1">1987</option>
+                <option value="1">1986</option>
+                <option value="1">1985</option>
+                <option value="1">1984</option>
+                <option value="1">1983</option>
+            </select>
+        </div> <br>
+        <div>
+            <label for="Gender">Gender: </label> 
+           
+            <label for="M">Male</label>
+            <input type="radio" name="Gender" value="M">
+    
+            <label for="">Female</label>
+            <input type="radio" name="Gender" value="F">
+        </div> <br>
+        <div>
+            <label for="country">Country: </label>
+            <input list="countries">
+            <datalist id = "countries">
+                <option value = "United Kingdom">
+                <option value = "United States">
+                <option value = "Germany">
+            </datalist><br>
+        </div> <br>
+        <div>
+            <label for="Email">Email:</label>
+            <input type="email" name="Email" required>
+        </div> <br>
+        <div>
+            <label for="Pnum">Phone number:</label>
+            <input type="tel" name="Pnum" id="Pnum" placeholder="(+44) (0) 12345678910" required>
+        </div> <br>
+        <div>
+            <label for="pass">Password:</label>
+            <input type="password" maxlength="15" placeholder="type password" required>
+        </div> <br>
+        <div>
+            <label for="Conpass">Confirm Password:</label>
+            <input type="password" maxlength="15" placeholder="retype password" required>
+        </div> <br>
+        <div>
+            <input type="submit" style="background-color: green;">
+            <input type="reset" style="background-color: red;">
+        </div>
+
+
+
+
+        </fieldset>
+    </form>
+</body>
+</html>

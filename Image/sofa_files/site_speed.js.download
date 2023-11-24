@@ -1,0 +1,27 @@
+/** Shopify CDN: Minification failed
+
+Line 10:0 Transforming const to the configured target environment ("es5") is not supported yet
+Line 11:0 Transforming const to the configured target environment ("es5") is not supported yet
+Line 12:0 Transforming const to the configured target environment ("es5") is not supported yet
+Line 25:0 Transforming const to the configured target environment ("es5") is not supported yet
+
+**/
+// site speed
+const targetNode = document.querySelector("body");
+const config = { childList: true, subtree: true };
+const callback = (mutationList, observer) => {
+  document.querySelectorAll("img").forEach((image) => {
+    if (
+      !image.closest(".slide-banner") &&
+      !image.closest("#FeaturedImageZoom-product-template") &&
+      !image.closest("#sandbox") &&
+      !image.closest(".des-img")
+    ) {
+      image.setAttribute("loading", "lazy");
+      image.classList.add("lazy");
+    }
+  });
+};
+const observer = new MutationObserver(callback);
+observer.observe(targetNode, config);
+// site speed

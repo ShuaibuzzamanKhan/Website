@@ -1,0 +1,272 @@
+(() => {
+  async function loadResources() {
+    const boostSDAppConfig = window.boostSDAppConfig;
+    const timestamp = Date.now();
+    const timestampParams = `?v=${timestamp}`;
+
+    if (boostSDAppConfig.mode === 'development') return;
+
+    const page = boostSDAppConfig.generalSettings.page;
+
+    const recommendationWidgetPlacementIdPrefix = 'boost-sd-widget-';
+    const recommendationWidgetPlacements = document.querySelectorAll(
+      `[id^='${recommendationWidgetPlacementIdPrefix}']`
+    );
+
+    const hasRecommendationBlock = !!recommendationWidgetPlacements.length;
+
+    const hasFilterBlock = !!document.querySelectorAll('.boost-sd__filter-block').length;
+
+    const themeInfo = boostSDAppConfig.themeInfo || {
+      boostThemeLib: 'default',
+      boostThemeLibVersion: 'latest',
+    };
+
+    const taeFeatures = !!Object.keys(themeInfo.taeFeatures || {}).length
+      ? themeInfo.taeFeatures
+      : {
+          filterLayout: {
+            collection: 'vertical',
+            search: 'vertical',
+          },
+          instantSearch: 'not-installed',
+          filterCollection: hasFilterBlock ? 'installed' : 'not-installed',
+          filterSearch: hasFilterBlock ? 'installed' : 'not-installed',
+          recommendation: hasRecommendationBlock ? 'installed' : 'not-installed',
+          env: 'production',
+        };
+
+    const env = taeFeatures.env || 'production';
+    const theme = themeInfo.boostThemeLib || 'default';
+
+    const version = env === 'staging' ? 'staging' : themeInfo.boostThemeLibVersion || 'latest';
+    const cdn = boostSDAppConfig.api.cdn || 'https://boost-cdn-staging.bc-solutions.net';
+    const featureAssetBaseURL = `${cdn}/theme/${theme}/${version}`;
+
+    const enableFilter =
+      (page === 'collection' && taeFeatures.filterCollection === 'installed') ||
+      (page === 'search' && taeFeatures?.filterSearch === 'installed');
+
+    const enableSearch = taeFeatures?.instantSearch === 'installed';
+    const enableRecommendation =
+      taeFeatures?.recommendation === 'installed' || hasRecommendationBlock;
+
+    let assetUrl =
+      (boostSDAppConfig && boostSDAppConfig.generalSettings.assets_url) ||
+      (window.boostSDAssetFileURL || '').split('boost_sd_assets_file_url.gif')[0];
+
+    if (assetUrl.endsWith('/')) {
+      assetUrl = assetUrl.slice(0, -1);
+    }
+
+    // Invalidate Resources Caching
+    const invalidateCacheTime = boostSDAppConfig.versioning.invalidateCache.latestTime;
+    const storageKey = 'boostSDVersioningInvalidateCacheTime';
+    const latestInvalidateTime = localStorage.getItem(storageKey);
+    const needInvalidateCache =
+      latestInvalidateTime && Number(latestInvalidateTime) < invalidateCacheTime;
+
+    function loadResource(script, position = 'body') {
+      return new Promise((resolve, reject) => {
+        if ((env === 'staging' || needInvalidateCache) && !script.src.includes(timestampParams)) {
+          script.src = script.src + timestampParams;
+        }
+
+        script.onload = function () {
+          resolve(true);
+        };
+
+        script.onerror = function (error) {
+          reject(error);
+        };
+
+        switch (position) {
+          case 'head': {
+            document.head.appendChild(script);
+          }
+
+          case 'body': {
+            document.body.appendChild(script);
+          }
+        }
+      });
+    }
+
+    if (!assetUrl) {
+      console.warn('[Boost]: Cannot detect assets url');
+    }
+
+    if (assetUrl) {
+      const customScript = document.createElement('script');
+      customScript.setAttribute(
+        'src',
+        (boostSDAppConfig && boostSDAppConfig.generalSettings.custom_js_asset_url) ||
+          `${assetUrl}/boost-sd-custom.js?v=${timestamp}`
+      );
+      try {
+        await loadResource(customScript, 'body');
+      } catch {}
+    }
+
+    const integrationExisted = !!boostSDAppConfig.integration;
+    const hasFeatureEnabled = enableFilter || enableSearch || enableRecommendation;
+
+    if (integrationExisted && hasFeatureEnabled) {
+      const integrationScript = document.createElement('script');
+      const version =
+        env === 'staging'
+          ? 'staging'
+          : ((themeInfo.compatibles || {})['3rdIntegration'] || {}).version || '1.0.3';
+
+      integrationScript.src = `${cdn}/integration/${version}/boost-sd-integration.js`;
+
+      try {
+        await loadResource(integrationScript, 'body');
+      } catch {}
+    }
+
+    const featureScripts = [];
+
+    if (!document.querySelector('script#boost-sd-vendor')) {
+      const vendorScript = document.createElement('script');
+
+      const vendorScriptSrc = `${featureAssetBaseURL}/vendor.js`;
+
+      vendorScript.setAttribute('src', vendorScriptSrc);
+      vendorScript.setAttribute('id', 'boost-sd-vendor');
+      vendorScript.setAttribute('async', true);
+
+      featureScripts.push({
+        script: vendorScript,
+        position: 'body',
+      });
+    }
+
+    if (!document.querySelector('script#boost-sd-main')) {
+      const mainScript = document.createElement('script');
+
+      const mainScriptSrc = `${featureAssetBaseURL}/main.js`;
+
+      mainScript.setAttribute('src', mainScriptSrc);
+      mainScript.setAttribute('id', 'boost-sd-main');
+      mainScript.setAttribute('async', true);
+
+      featureScripts.push({
+        script: mainScript,
+        position: 'body',
+      });
+    }
+
+    if (enableSearch && !document.querySelector('script#boost-sd-search')) {
+      const searchScript = document.createElement('script');
+
+      const searchScriptSrc = `${featureAssetBaseURL}/search.js`;
+
+      searchScript.setAttribute('src', searchScriptSrc);
+      searchScript.setAttribute('id', 'boost-sd-search');
+      searchScript.setAttribute('async', true);
+
+      featureScripts.push({
+        script: searchScript,
+        position: 'body',
+      });
+    }
+
+    if (enableFilter && !document.querySelector('script#boost-sd-filter')) {
+      const filterScript = document.createElement('script');
+      const filterScriptSrc = `${featureAssetBaseURL}/filter.js`;
+
+      filterScript.setAttribute('src', filterScriptSrc);
+      filterScript.setAttribute('id', 'boost-sd-filter');
+      filterScript.setAttribute('async', true);
+
+      featureScripts.push({
+        script: filterScript,
+        position: 'body',
+      });
+    }
+
+    if (enableRecommendation && !document.querySelector('script#boost-sd-recommendation')) {
+      const recommendationScript = document.createElement('script');
+      const recommendationScriptSrc = `${featureAssetBaseURL}/recommendation.js`;
+
+      recommendationScript.setAttribute('src', recommendationScriptSrc);
+      recommendationScript.setAttribute('id', 'boost-sd-recommendation');
+      recommendationScript.setAttribute('async', true);
+
+      featureScripts.push({
+        script: recommendationScript,
+        position: 'body',
+      });
+    }
+
+    try {
+      await Promise.all(
+        featureScripts.map(({ script, position }) => loadResource(script, position))
+      );
+    } catch {}
+
+    if (boostSDAppConfig.generalSettings.rtl && !document.querySelector('script#boost-sd-rtl')) {
+      const rtlScript = document.createElement('script');
+      const appVersion =
+        env === 'staging'
+          ? 'staging'
+          : ((themeInfo.compatibles || {}).app || {}).version || 'latest';
+
+      const rtlScriptSrc = `${cdn}/app/${appVersion}/boost-sd-rtl.js`;
+
+      rtlScript.setAttribute('src', rtlScriptSrc);
+      rtlScript.setAttribute('id', 'boost-sd-rtl');
+      rtlScript.setAttribute('async', true);
+
+      try {
+        await loadResource(rtlScript, 'body');
+      } catch {}
+    }
+
+    if (!document.querySelector('script#boost-sd-analytic')) {
+      const analyticScript = document.createElement('script');
+      const analyticVersion =
+        env === 'staging'
+          ? 'staging'
+          : ((themeInfo.compatibles || {}).analytic || {}).version || '1.1.0';
+
+      const analyticsScriptSrc = `${cdn}/analytic/${analyticVersion}/boost-sd-analytic.js`;
+
+      analyticScript.setAttribute('src', analyticsScriptSrc);
+      analyticScript.setAttribute('id', 'boost-sd-analytic');
+      analyticScript.setAttribute('async', true);
+
+      try {
+        loadResource(analyticScript, 'body');
+      } catch {}
+    }
+
+    if (assetUrl) {
+      const customCSSLink = document.createElement('link');
+      customCSSLink.rel = 'stylesheet';
+      customCSSLink.type = 'text/css';
+      customCSSLink.href =
+        (boostSDAppConfig && boostSDAppConfig.generalSettings.custom_css_asset_url) ||
+        `${assetUrl}/boost-sd-custom.css?v=${timestamp}`;
+
+      try {
+        await loadResource(customCSSLink, 'body');
+      } catch {}
+    }
+
+    if (
+      !latestInvalidateTime ||
+      (latestInvalidateTime && Number(latestInvalidateTime) < invalidateCacheTime)
+    ) {
+      localStorage.setItem(storageKey, invalidateCacheTime);
+    }
+  }
+
+  if (window.boostSDLoadConfig && window.boostSDLoadConfig.lazy) {
+    const targetElement = window.boostSDLoadConfig.targetElement || window;
+    targetElement.addEventListener('DOMContentLoaded', loadResources);
+  } else {
+    loadResources();
+  }
+})();
